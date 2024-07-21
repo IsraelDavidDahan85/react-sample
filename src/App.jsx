@@ -10,7 +10,7 @@ function App() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${import.meta.env.BASE_URL}`)
+      const response = await fetch(`${import.meta.env.VITE_API_URL}`)
       const data = await response.json()
       setData(data)
     }
