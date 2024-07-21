@@ -1,0 +1,25 @@
+name: ci-action
+run-name: ${{ github.actor }} ran build on ${{ github.repository }}
+on: [push]
+env:
+  REPO_NAME: israeldahan
+  APP_NAME: react-sample
+  APP_VERSION: 1.0.0
+jobs:
+  CI-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build the docker image
+        run: docker build -t "$REPO_NAME/$APP_NAME:$APP_VERSION" .
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Push to Docker Hub
+        run: docker push "$REPO_NAME/$APP_NAME:$APP_VERSION"
+
