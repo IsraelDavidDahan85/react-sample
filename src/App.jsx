@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import configData from "../config/default.json";
 
 function App() {
   const [count, setCount] = useState(0)
@@ -10,7 +9,7 @@ function App() {
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${configData.BACKEND_URL}`)
+      const response = await fetch(`${process.env.REACT_APP_API_URL}`)
       const data = await response.json()
       setData(data)
     }
