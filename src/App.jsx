@@ -3,13 +3,14 @@ import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 
+
 function App() {
   const [count, setCount] = useState(0)
   const [data, setData] = useState([])
   
   useEffect(() => {
     const fetchData = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}`)
+      const response = await fetch(`${import.meta.env.BASE_URL}`)
       const data = await response.json()
       setData(data)
     }
